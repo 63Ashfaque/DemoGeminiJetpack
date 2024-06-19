@@ -3,7 +3,6 @@ package com.ashfaque.demogeminijetpack
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
@@ -26,7 +25,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Send
-import androidx.compose.material.icons.filled.Send
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -53,17 +52,16 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.ashfaque.demogeminijetpack.GlobalState.chatList
 import com.ashfaque.demogeminijetpack.ui.compose.AiCardView
-import com.ashfaque.demogeminijetpack.ui.compose.PromptBar
+import com.ashfaque.demogeminijetpack.ui.compose.MainScreenBox
 import com.ashfaque.demogeminijetpack.ui.compose.UserCardView
 import com.ashfaque.demogeminijetpack.ui.theme.DarkGray
 import com.ashfaque.demogeminijetpack.ui.theme.DemoGeminiJetpackTheme
 import com.ashfaque.demogeminijetpack.ui.theme.LightGray
 import com.ashfaque.demogeminijetpack.ui.theme.White70
-import com.google.ai.client.generativeai.GenerativeModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -75,18 +73,25 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                    color = DarkGray
                 ) {
-                    BoxWithBackground()
+                    // BoxWithBackground()
+                    MainScreenBox()
                 }
             }
         }
     }
+
 }
+
 
 object GlobalState {
     val chatList = mutableStateListOf(
-        ChatModel("Hi! How can I help you today?", TypeClass.AI, Utils().getCurrentDateTime(dateFormate)),
+        ChatModel(
+            "Hi! How can I help you today?",
+            TypeClass.AI,
+            Utils().getCurrentDateTime(dateFormate)
+        ),
     )
 }
 
@@ -126,18 +131,20 @@ fun MainScreen(items: List<ChatModel>) {
         listState.animateScrollToItem(items.size - 1)
     }
     Column(modifier = Modifier.fillMaxSize()) {
-        LazyColumn(modifier = Modifier.weight(1f),state=listState) {
+        LazyColumn(modifier = Modifier.weight(1f), state = listState) {
             items(items) { item ->
                 if (item.type == TypeClass.AI) AiCardView(item) else UserCardView(item)
             }
         }
         var promptText by remember { mutableStateOf(TextFieldValue("")) }
 
-        Row( modifier = Modifier
-            .height(60.dp)
-            .padding(top = 8.dp),
+        Row(
+            modifier = Modifier
+                .height(60.dp)
+                .padding(top = 8.dp),
         ) {
-            ElevatedCard(shape = RoundedCornerShape(20.dp),
+            ElevatedCard(
+                shape = RoundedCornerShape(20.dp),
                 elevation = CardDefaults.cardElevation(
                     defaultElevation = 6.dp
                 ),
@@ -168,9 +175,15 @@ fun MainScreen(items: List<ChatModel>) {
                 }
             }
             IconButton(
-                onClick =  {
-                    val prompt=promptText.text
-                    chatList.add(ChatModel(prompt, TypeClass.USER, Utils().getCurrentDateTime(dateFormate)))
+                onClick = {
+                    val prompt = promptText.text
+                    chatList.add(
+                        ChatModel(
+                            prompt,
+                            TypeClass.USER,
+                            Utils().getCurrentDateTime(dateFormate)
+                        )
+                    )
                     promptText = TextFieldValue("")
                     coroutineScope.launch {
                         listState.animateScrollToItem(chatList.size - 1)
@@ -180,7 +193,13 @@ fun MainScreen(items: List<ChatModel>) {
                                 Log.d("Ashu", it)
                                 withContext(Dispatchers.Main)
                                 {
-                                    chatList.add(ChatModel(it, TypeClass.AI, Utils().getCurrentDateTime(dateFormate)))
+                                    chatList.add(
+                                        ChatModel(
+                                            it,
+                                            TypeClass.AI,
+                                            Utils().getCurrentDateTime(dateFormate)
+                                        )
+                                    )
                                 }
                                 listState.animateScrollToItem(chatList.size - 1)
                             }
@@ -202,7 +221,7 @@ fun MainScreen(items: List<ChatModel>) {
                 ) {
                     Icon(
                         imageVector = Icons.AutoMirrored.Filled.Send,
-                        contentDescription="",
+                        contentDescription = "",
                         tint = Color.White
                     )
                 }
