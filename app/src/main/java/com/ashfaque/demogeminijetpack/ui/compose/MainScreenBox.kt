@@ -32,7 +32,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -48,6 +47,7 @@ fun GreetingPreview() {
         MainScreenBox()
     }
 }
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreenBox() {
@@ -117,20 +117,23 @@ fun MainScreenBox() {
 
         Spacer(modifier = Modifier.height(8.dp))
         if (filteredItems.isEmpty()) {
-                Box(modifier = Modifier.padding(20.dp).align(Alignment.CenterHorizontally),
-                ) {
-                    Text(
-                        text = "No data found",fontSize = 24.sp, color = Color.White,
-                    )
-                }
+            Box(
+                modifier = Modifier
+                    .padding(20.dp)
+                    .align(Alignment.CenterHorizontally),
+            ) {
+                Text(
+                    text = "No data found", fontSize = 24.sp, color = Color.White,
+                )
+            }
         }
         LazyColumn(
             modifier = Modifier.weight(1f)
         ) {
-            if (filteredItems.isNotEmpty()){
+            if (filteredItems.isNotEmpty()) {
                 items(filteredItems) { item ->
                     Text(
-                        text = item,fontSize = 24.sp, color = Color.White,
+                        text = item, fontSize = 24.sp, color = Color.White,
                         modifier = Modifier.padding(8.dp)
                     )
                 }

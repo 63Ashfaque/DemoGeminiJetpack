@@ -9,10 +9,8 @@ import kotlin.random.Random
 class Utils {
 
     @SuppressLint("SimpleDateFormat")
-     fun getCurrentDateTime(format:String?):String
-    {
-        if(format.isNullOrBlank())
-        {
+    fun getCurrentDateTime(format: String?): String {
+        if (format.isNullOrBlank()) {
             return ""
         }
         val dateFormat = SimpleDateFormat(format)
@@ -24,7 +22,7 @@ class Utils {
     val generativeModel = GenerativeModel(
         // The Gemini 1.5 models are versatile and work with both text-only and multimodal prompts
         modelName = "gemini-1.5-flash",
-        apiKey = apiKey1+ apiKey2+ apiKey3
+        apiKey = apiKey1 + apiKey2 + apiKey3
     )
 
     fun generateRandomStringList(size: Int): List<String> {
@@ -42,3 +40,5 @@ class Utils {
     }
 
 }
+
+

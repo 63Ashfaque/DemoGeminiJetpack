@@ -1,11 +1,23 @@
 package com.ashfaque.demogeminijetpack
 
+import androidx.compose.runtime.mutableStateListOf
+
 // Access your API key as a Build Configuration variable
 val apiKey1 = "AI"
 val apiKey2 = "zaSyCzgnHd3PNE1uBanFMrtpOY8ACDzUQ9x"
 val apiKey3 = "_g"
 
 val dateFormate="hh:mm a"
+
+object GlobalState {
+    val chatList = mutableStateListOf(
+        ChatModel(
+            "Hi! How can I help you today?",
+            TypeClass.AI,
+            Utils().getCurrentDateTime(dateFormate)
+        ),
+    )
+}
 
 val markdownText = """
     ## Android Development: A Comprehensive Overview
