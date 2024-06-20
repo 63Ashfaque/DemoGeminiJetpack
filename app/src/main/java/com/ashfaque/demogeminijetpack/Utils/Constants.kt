@@ -1,6 +1,7 @@
-package com.ashfaque.demogeminijetpack
+package com.ashfaque.demogeminijetpack.Utils
 
 import androidx.compose.runtime.mutableStateListOf
+import com.ashfaque.demogeminijetpack.model.ChatModel
 
 // Access your API key as a Build Configuration variable
 val apiKey1 = "AI"

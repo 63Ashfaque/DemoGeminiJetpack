@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -36,11 +35,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.ashfaque.demogeminijetpack.ChatModel
-import com.ashfaque.demogeminijetpack.GlobalState.chatList
-import com.ashfaque.demogeminijetpack.TypeClass
-import com.ashfaque.demogeminijetpack.Utils
-import com.ashfaque.demogeminijetpack.dateFormate
+import com.ashfaque.demogeminijetpack.model.ChatModel
+import com.ashfaque.demogeminijetpack.Utils.GlobalState.chatList
+import com.ashfaque.demogeminijetpack.Utils.TypeClass
+import com.ashfaque.demogeminijetpack.Utils.Utils
+import com.ashfaque.demogeminijetpack.Utils.dateFormate
 import com.ashfaque.demogeminijetpack.ui.theme.DarkGray
 
 @Preview(showBackground = true)
@@ -84,7 +83,11 @@ fun PromptBar() {
         }
         IconButton(
             onClick =  {
-                chatList.add(ChatModel(promptText.text, TypeClass.USER, Utils().getCurrentDateTime(dateFormate)))
+                chatList.add(
+                    ChatModel(promptText.text, TypeClass.USER, Utils().getCurrentDateTime(
+                    dateFormate
+                ))
+                )
             },
             modifier = Modifier
                 .size(60.dp) // Set the size of the button

@@ -71,4 +71,8 @@ dependencies {
 
     // add the dependency for the Google AI client SDK for Android
     implementation("com.google.ai.client.generativeai:generativeai:0.7.0")
+
+    //Navigation component
+    implementation ("androidx.navigation:navigation-compose:2.7.7")
+
 }

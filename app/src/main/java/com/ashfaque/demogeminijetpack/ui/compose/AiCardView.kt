@@ -16,8 +16,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.ashfaque.demogeminijetpack.ChatModel
-import com.ashfaque.demogeminijetpack.R
+import com.ashfaque.demogeminijetpack.model.ChatModel
 import com.ashfaque.demogeminijetpack.ui.theme.DarkGray
 import com.ashfaque.demogeminijetpack.ui.theme.White80
 import dev.jeziellago.compose.markdowntext.MarkdownText
@@ -42,11 +41,6 @@ fun AiCardView(item: ChatModel) {
                 modifier = Modifier
                     .padding(8.dp)
             ) {
-//                Text(
-//                    text = item.prompt,
-//                    style = MaterialTheme.typography.labelLarge,
-//                    color = Color.White
-//                )
                 MarkdownText(
                     modifier = Modifier.padding(8.dp),
                     markdown = item.prompt,

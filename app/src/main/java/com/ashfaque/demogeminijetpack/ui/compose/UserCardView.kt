@@ -13,7 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.ashfaque.demogeminijetpack.ChatModel
+import com.ashfaque.demogeminijetpack.model.ChatModel
 import com.ashfaque.demogeminijetpack.ui.theme.LightGray
 import com.ashfaque.demogeminijetpack.ui.theme.White80
 

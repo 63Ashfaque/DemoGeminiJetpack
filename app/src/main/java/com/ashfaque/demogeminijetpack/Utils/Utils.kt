@@ -1,4 +1,4 @@
-package com.ashfaque.demogeminijetpack
+package com.ashfaque.demogeminijetpack.Utils
 
 import android.annotation.SuppressLint
 import com.google.ai.client.generativeai.GenerativeModel
