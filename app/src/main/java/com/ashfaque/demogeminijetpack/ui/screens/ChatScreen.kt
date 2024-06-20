@@ -2,6 +2,7 @@ package com.ashfaque.demogeminijetpack.ui.screens
 
 import android.annotation.SuppressLint
 import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -38,6 +39,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import com.ashfaque.demogeminijetpack.model.ChatModel
@@ -45,8 +47,10 @@ import com.ashfaque.demogeminijetpack.Utils.GlobalState
 import com.ashfaque.demogeminijetpack.Utils.TypeClass
 import com.ashfaque.demogeminijetpack.Utils.Utils
 import com.ashfaque.demogeminijetpack.Utils.dateFormate
+import com.ashfaque.demogeminijetpack.roomdb.DataBaseName
 import com.ashfaque.demogeminijetpack.ui.compose.AiCardView
 import com.ashfaque.demogeminijetpack.ui.compose.UserCardView
+import com.ashfaque.demogeminijetpack.ui.compose.showToast
 import com.ashfaque.demogeminijetpack.ui.theme.DarkGray
 import com.ashfaque.demogeminijetpack.ui.theme.LightGray
 import com.ashfaque.demogeminijetpack.ui.theme.White70
@@ -59,8 +63,12 @@ import kotlinx.coroutines.withContext
 @Composable
 fun ChatScreen( items: List<ChatModel>) {
 
+    val context = LocalContext.current
+    val dataBase=DataBaseName.getDataBase(context)
+
     val listState = rememberLazyListState()
     val coroutineScope = rememberCoroutineScope()
+
     coroutineScope.launch {
         listState.animateScrollToItem(items.size - 1)
     }
@@ -112,7 +120,7 @@ fun ChatScreen( items: List<ChatModel>) {
                     onClick = {
                         val prompt = promptText.text
                         GlobalState.chatList.add(
-                            ChatModel(
+                            ChatModel(1,"fd1",
                                 prompt,
                                 TypeClass.USER,
                                 Utils().getCurrentDateTime(dateFormate)
@@ -125,16 +133,19 @@ fun ChatScreen( items: List<ChatModel>) {
                                 val response = Utils().generativeModel.generateContent(prompt)
                                 response.text?.let {
                                     Log.d("Ashu", it)
+
+                                    val item= ChatModel(0,it,
+                                        it,
+                                        TypeClass.AI,
+                                        Utils().getCurrentDateTime(dateFormate)
+                                    )
+                                    val result=dataBase.interfaceDao().insertData(item)
+                                    showToast(context,msg = "$result")
                                     withContext(Dispatchers.Main)
                                     {
-                                        GlobalState.chatList.add(
-                                            ChatModel(
-                                                it,
-                                                TypeClass.AI,
-                                                Utils().getCurrentDateTime(dateFormate)
-                                            )
-                                        )
+                                        GlobalState.chatList.add(item)
                                     }
+
                                     listState.animateScrollToItem(GlobalState.chatList.size - 1)
                                 }
                             } catch (e: Exception) {
@@ -163,4 +174,7 @@ fun ChatScreen( items: List<ChatModel>) {
             }
         }
 
+
 }
+
+

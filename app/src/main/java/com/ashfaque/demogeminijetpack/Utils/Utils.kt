@@ -1,13 +1,15 @@
 package com.ashfaque.demogeminijetpack.Utils
 
 import android.annotation.SuppressLint
+import android.widget.Toast
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalContext
 import com.google.ai.client.generativeai.GenerativeModel
 import java.text.SimpleDateFormat
 import java.util.Date
 import kotlin.random.Random
 
 class Utils {
-
     @SuppressLint("SimpleDateFormat")
     fun getCurrentDateTime(format: String?): String {
         if (format.isNullOrBlank()) {

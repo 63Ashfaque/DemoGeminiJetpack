@@ -7,9 +7,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.ashfaque.demogeminijetpack.roomdb.DataBaseName
 import com.ashfaque.demogeminijetpack.ui.screens.MainScreen
 import com.ashfaque.demogeminijetpack.ui.screens.Screen2
 import com.ashfaque.demogeminijetpack.ui.theme.DarkGray
@@ -32,6 +34,8 @@ class MainActivity : ComponentActivity() {
     }
 
 }
+
+
 
 @Composable
 fun MyApp() {
