@@ -42,7 +42,9 @@ fun MyApp() {
     val navController = rememberNavController()
     NavHost(navController, startDestination = "screen1") {
         composable("screen1") { MainScreen(navController) }
-        composable("screen2") { Screen2(navController) }
+        composable("screen2/{roomId}") { backStackEntry ->
+            Screen2(navController,roomId = backStackEntry.arguments?.getString("roomId"))
+        }
     }
 }
 

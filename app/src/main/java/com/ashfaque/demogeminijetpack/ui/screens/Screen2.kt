@@ -35,14 +35,14 @@ import com.ashfaque.demogeminijetpack.ui.theme.LightGray
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Screen2(navController: NavHostController) {
+fun Screen2(navController: NavHostController,roomId: String?) {
     Scaffold(
         topBar = {
             TopAppBar(
                 title = {
                     Column {
-                        Text(text = "Screen 2",style = MaterialTheme.typography.titleSmall)
-                        Text(text = "Screen 2",style = MaterialTheme.typography.labelSmall)
+                        Text(text = "$roomId",style = MaterialTheme.typography.titleSmall)
+                        Text(text = "$roomId",style = MaterialTheme.typography.labelSmall)
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(

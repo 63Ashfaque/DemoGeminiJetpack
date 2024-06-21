@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 import com.ashfaque.demogeminijetpack.Utils.TypeClass
 import com.ashfaque.demogeminijetpack.Utils.tableName
 
-@Entity(tableName = tableName, indices = [Index(value = ["roomId"], unique = true)])
+@Entity(tableName = tableName)
 data class ChatModel(
 
     @PrimaryKey(autoGenerate = true)

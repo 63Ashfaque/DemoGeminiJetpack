@@ -89,7 +89,7 @@ fun MainScreen(navController: NavHostController) {
         modifier = Modifier.background(DarkGray),
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { navController.navigate("screen2") },
+                onClick = { navController.navigate("screen2/welcome") },
                 contentColor = DarkGray,
                 shape = CircleShape,
             ) {
@@ -165,7 +165,7 @@ fun MainScreen(navController: NavHostController) {
                         Row(
                             modifier = Modifier
                                 .padding(10.dp)
-                                .clickable { navController.navigate("screen2") },
+                                .clickable { navController.navigate("screen2/${item.roomId}") },
                             horizontalArrangement = Arrangement.Center,
                             verticalAlignment = Alignment.CenterVertically
                         ) {
