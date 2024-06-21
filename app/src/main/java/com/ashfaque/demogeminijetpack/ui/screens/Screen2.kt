@@ -6,12 +6,15 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -28,6 +31,7 @@ import androidx.navigation.NavHostController
 import com.ashfaque.demogeminijetpack.Utils.GlobalState
 import com.ashfaque.demogeminijetpack.R
 import com.ashfaque.demogeminijetpack.ui.theme.DarkGray
+import com.ashfaque.demogeminijetpack.ui.theme.LightGray
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -36,9 +40,9 @@ fun Screen2(navController: NavHostController) {
         topBar = {
             TopAppBar(
                 title = {
-                    Column {
-                        Text(text = "Screen 2",fontSize = 24.sp, color = Color.White)
-                        Text(text = "Screen 2",fontSize = 14.sp, color = Color.White)
+                    Column(modifier = Modifier.padding(0.dp).height(50.dp)) {
+                        Text(text = "Screen 2",style = MaterialTheme.typography.headlineSmall)
+                        Text(text = "Screen 2",style = MaterialTheme.typography.labelSmall)
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(

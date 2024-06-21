@@ -106,27 +106,18 @@ fun MainScreen(navController: NavHostController) {
                 .padding(it),
         ) {
             Text(
-                text = "WhatsApp Chat Bot", fontSize = 24.sp, color = Color.White,
+                text = "WhatsApp Chat Bot", style = MaterialTheme.typography.titleSmall, color = Color.White,
                 modifier = Modifier.padding(16.dp),
             )
 
             Row(
                 modifier = Modifier
-                    .height(70.dp)
-                    .padding(8.dp),
+                    .height(55.dp).padding(12.dp,0.dp,12.dp,0.dp)
             ) {
                 ElevatedCard(
                     shape = RoundedCornerShape(25.dp),
-                    elevation = CardDefaults.cardElevation(
-                        defaultElevation = 10.dp
-                    ),
                     modifier = Modifier.weight(0.7f)
                 ) {
-                    Column(
-                        modifier = Modifier
-                            .fillMaxSize(),
-                        verticalArrangement = Arrangement.Center
-                    ) {
 
                         TextField(
                             value = searchText,
@@ -141,7 +132,7 @@ fun MainScreen(navController: NavHostController) {
                             placeholder = {
                                 Text(
                                     text = "Search",
-                                    style = MaterialTheme.typography.bodyLarge,
+                                    style = MaterialTheme.typography.titleSmall,
                                     color = Color.White
                                 )
                             },
@@ -151,10 +142,8 @@ fun MainScreen(navController: NavHostController) {
                             ),
                             textStyle = LocalTextStyle.current.copy(color = Color.White)
                         )
-                    }
                 }
             }
-
 
             Spacer(modifier = Modifier.height(8.dp))
             if (filteredItems.isEmpty()) {
@@ -164,7 +153,7 @@ fun MainScreen(navController: NavHostController) {
                         .align(Alignment.CenterHorizontally),
                 ) {
                     Text(
-                        text = "No data found", fontSize = 24.sp, color = Color.White,
+                        text = "No data found", style = MaterialTheme.typography.titleSmall, color = Color.White,
                     )
                 }
             }
@@ -183,7 +172,7 @@ fun MainScreen(navController: NavHostController) {
                             Box(
                                 contentAlignment = Alignment.Center,
                                 modifier = Modifier
-                                    .size(60.dp)
+                                    .size(40.dp)
                                     .background(LightGray, shape = CircleShape)
                                     .padding(8.dp)
                                     .align(Alignment.CenterVertically),
@@ -191,7 +180,7 @@ fun MainScreen(navController: NavHostController) {
                                 Text(
                                     text = item.prompt.substring(0, 1)
                                         .uppercase(Locale.getDefault()),
-                                    fontSize = 30.sp,
+                                    style = MaterialTheme.typography.titleSmall,
                                     color = Color.White,
                                 )
                             }
@@ -201,11 +190,11 @@ fun MainScreen(navController: NavHostController) {
                                 horizontalArrangement = Arrangement.SpaceBetween
                             ) {
                                 Text(
-                                    text = "${item.prompt.substring(0, 20)}...", fontSize = 24.sp, color = Color.White,
+                                    text = "${item.prompt.substring(0, 20)}...",style = MaterialTheme.typography.titleSmall,color = Color.White,
                                     modifier = Modifier.padding(start = 8.dp)
                                 )
                                 Text(
-                                    text = item.dateTime, fontSize = 16.sp, color = White70,
+                                    text = item.dateTime,  style = MaterialTheme.typography.titleSmall, color = White70,
                                     modifier = Modifier.padding(start = 8.dp)
                                 )
                             }
