@@ -42,7 +42,6 @@ fun AiCardView(item: ChatModel) {
                     .padding(8.dp)
             ) {
                 MarkdownText(
-                    modifier = Modifier.padding(8.dp),
                     markdown = item.prompt,
                     style = TextStyle(
                         color = Color.White,

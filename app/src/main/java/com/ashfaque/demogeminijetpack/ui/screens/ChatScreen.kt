@@ -87,9 +87,6 @@ fun ChatScreen( items: List<ChatModel>) {
             ) {
                 ElevatedCard(
                     shape = RoundedCornerShape(20.dp),
-                    elevation = CardDefaults.cardElevation(
-                        defaultElevation = 6.dp
-                    ),
                     modifier = Modifier.weight(0.7f)
                 ) {
                     Column(

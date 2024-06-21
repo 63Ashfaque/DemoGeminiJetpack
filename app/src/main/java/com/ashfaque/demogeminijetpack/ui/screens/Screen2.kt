@@ -40,8 +40,8 @@ fun Screen2(navController: NavHostController) {
         topBar = {
             TopAppBar(
                 title = {
-                    Column(modifier = Modifier.padding(0.dp).height(50.dp)) {
-                        Text(text = "Screen 2",style = MaterialTheme.typography.headlineSmall)
+                    Column {
+                        Text(text = "Screen 2",style = MaterialTheme.typography.titleSmall)
                         Text(text = "Screen 2",style = MaterialTheme.typography.labelSmall)
                     }
                 },

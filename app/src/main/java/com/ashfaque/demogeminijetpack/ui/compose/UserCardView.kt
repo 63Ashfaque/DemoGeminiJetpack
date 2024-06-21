@@ -39,7 +39,7 @@ fun UserCardView(item: ChatModel) {
             ) {
                 Text(
                     text = item.prompt,
-                    style = MaterialTheme.typography.labelLarge,
+                    style = MaterialTheme.typography.bodyMedium,
                     color = Color.White
                 )
                 Text(
