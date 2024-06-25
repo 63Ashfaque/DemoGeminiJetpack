@@ -12,7 +12,15 @@ data class ChatModel(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
     val roomId:String,
+    val roomName:String,
     val prompt: String,
     val type: TypeClass,
     val dateTime: String
+)
+
+
+data class ChatListModel(
+
+    val roomId:String,
+    val roomName:String,
 )

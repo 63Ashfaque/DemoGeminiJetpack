@@ -43,7 +43,7 @@ fun MyApp() {
     NavHost(navController, startDestination = "screen1") {
         composable("screen1") { MainScreen(navController) }
         composable("screen2/{roomId}") { backStackEntry ->
-            Screen2(navController,roomId = backStackEntry.arguments?.getString("roomId"))
+            backStackEntry.arguments?.getString("roomId")?.let { Screen2(navController,roomId = it) }
         }
     }
 }

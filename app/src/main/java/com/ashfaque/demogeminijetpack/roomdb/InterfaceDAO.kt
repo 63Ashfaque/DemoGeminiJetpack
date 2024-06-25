@@ -8,6 +8,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import com.ashfaque.demogeminijetpack.Utils.tableName
+import com.ashfaque.demogeminijetpack.model.ChatListModel
 import com.ashfaque.demogeminijetpack.model.ChatModel
 @Dao
 interface InterfaceDAO {
@@ -24,8 +25,14 @@ interface InterfaceDAO {
     @Query("SELECT * FROM $tableName")
     fun getAllRecord():List<ChatModel>
 
+    //@Query("SELECT DISTINCT roomId FROM $tableName")
+    @Query("SELECT DISTINCT roomId,roomName FROM $tableName")
+    fun getAllRecordDistinct():List<ChatListModel>
+
+
+
     @Query("SELECT * FROM $tableName WHERE roomId = :roomId")
-    fun getAllRecordByRoomID(roomId:Int):LiveData<List<ChatModel>>
+    fun getAllRecordByRoomID(roomId:String):List<ChatModel>
 
 
 }

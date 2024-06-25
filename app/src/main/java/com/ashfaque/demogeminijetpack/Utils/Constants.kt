@@ -17,7 +17,7 @@ const val tableName="chatTable"
 
 object GlobalState {
     val chatList = mutableStateListOf(
-        ChatModel(1,"fd1",
+        ChatModel(1,"fd1","sfgd",
             "Hi! How can I help you today?",
             TypeClass.AI,
             Utils().getCurrentDateTime(dateFormate)

@@ -45,6 +45,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.ashfaque.demogeminijetpack.Utils.Utils
+import com.ashfaque.demogeminijetpack.model.ChatListModel
 import com.ashfaque.demogeminijetpack.model.ChatModel
 import com.ashfaque.demogeminijetpack.roomdb.DataBaseName
 import com.ashfaque.demogeminijetpack.ui.compose.showToast
@@ -63,33 +65,34 @@ fun MainScreen(navController: NavHostController) {
     val context = LocalContext.current
     val dataBase = DataBaseName.getDataBase(context)
 
-    var result by remember { mutableStateOf<List<ChatModel>>(emptyList()) }
+    var result by remember { mutableStateOf<List<ChatListModel>>(emptyList()) }
     var searchText by remember { mutableStateOf("") }
-
-
 
 
     // Fetch data from the database in a coroutine
     LaunchedEffect(Unit) {
         CoroutineScope(Dispatchers.IO).launch {
-            val records = dataBase.interfaceDao().getAllRecord()
+            val records = dataBase.interfaceDao().getAllRecordDistinct()
             result = records
         }
     }
 
+
     // Show toast with the fetched result
     LaunchedEffect(result) {
         if (result.isNotEmpty()) {
-            showToast(context, msg = "${result[0].prompt}")
+            showToast(context, msg = "${result[0].roomId}")
         }
     }
-    val filteredItems = result.filter { it.prompt.contains(searchText, ignoreCase = true) }
+    val filteredItems = result.filter { it.roomName.contains(searchText, ignoreCase = true) }
 
     Scaffold(
         modifier = Modifier.background(DarkGray),
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { navController.navigate("screen2/welcome") },
+                onClick = { navController.navigate(
+                    "screen2/${Utils().getCurrentDateTime("yyyyMMdd_hhmmss")}")
+                          },
                 contentColor = DarkGray,
                 shape = CircleShape,
             ) {
@@ -178,23 +181,24 @@ fun MainScreen(navController: NavHostController) {
                                     .align(Alignment.CenterVertically),
                             ) {
                                 Text(
-                                    text = item.prompt.substring(0, 1)
+                                    text = item.roomName.substring(0, 1)
                                         .uppercase(Locale.getDefault()),
                                     style = MaterialTheme.typography.titleSmall,
                                     color = Color.White,
                                 )
                             }
-
+                            val length= if(item.roomName.length<20)item.roomName.length else 20
                             Row(
                                 modifier = Modifier.fillMaxWidth(),
                                 horizontalArrangement = Arrangement.SpaceBetween
                             ) {
                                 Text(
-                                    text = "${item.prompt.substring(0, 20)}...",style = MaterialTheme.typography.titleSmall,color = Color.White,
+
+                                    text = "${item.roomName.substring(0, length)}...",style = MaterialTheme.typography.titleSmall,color = Color.White,
                                     modifier = Modifier.padding(start = 8.dp)
                                 )
                                 Text(
-                                    text = item.dateTime,  style = MaterialTheme.typography.titleSmall, color = White70,
+                                    text = "",  style = MaterialTheme.typography.titleSmall, color = White70,
                                     modifier = Modifier.padding(start = 8.dp)
                                 )
                             }
